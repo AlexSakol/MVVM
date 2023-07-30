@@ -1,0 +1,63 @@
+﻿<Window x:Class="WPF_LAB_9.EditPaymentWindow"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:local="clr-namespace:WPF_LAB_9"
+mc:Ignorable="d"
+DataContext="{Binding RelativeSource={RelativeSource Self}}"
+Title="EditPaymentWindow" Height="273" Width="434" WindowStartupLocation="CenterOwner">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,7,0,0"
+Text="Редактирование платежа"
+FontWeight="Bold" FontSize="15"/>
+        <UniformGrid DockPanel.Dock="Bottom" Rows="1" HorizontalAlignment="Right" Margin="0,0,0,10">
+            <Button Content="Ok" Margin="10,0" Padding="35,5"
+IsDefault="True" FontWeight="Bold" Command="{Binding OkCommand}"/>
+            <Button Content="Cancel" Margin="10,0" IsCancel="True"/>
+        </UniformGrid>
+        <Grid Margin="3">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <Trigger Property="Grid.Column" Value="0">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Margin" Value="0,3"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="3,2,0,2"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Наименование:"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Дата платежа:"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Стоимость"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Фото:"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding PaymentName}"/>
+            <DatePicker Grid.Column="1" Grid.Row="1" Margin="3,2,0,2"
+SelectedDate="{Binding PaymentDate}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Price}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding ImagePass}"/>
+            <Button Grid.Column="1" Grid.Row="4"
+Content="Выбрать файл" Height="30" Command="{Binding SelectedImageCommand}"
+Width="Auto" HorizontalAlignment="Right"
+Margin="0,2,10,27" Padding="5"/>
+            <Image Grid.Column="1" Grid.Row="5" Width="100" HorizontalAlignment="Left"
+Source="{Binding ImagePass}"/>
+        </Grid>
+    </DockPanel>
+</Window>
